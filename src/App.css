@@ -26,3 +26,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #e67e22;
+}
