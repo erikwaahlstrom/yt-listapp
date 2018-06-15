@@ -2,13 +2,11 @@ import * as React from 'react';
 
 const URL = 'https://www.googleapis.com/youtube/v3/search';
 const KEY = 'AIzaSyB2gmaBHYLim0wrHh8xsB93yvTriLJHIjY';
-const channelID = 'UC59K-uG2A5ogwIrHw4bmlEg';
+// const channelID = 'UC59K-uG2A5ogwIrHw4bmlEg';
 
-// const channelID = 'UCp8lM3X0hpFDVlaFuZBvw0g';
+const channelID = 'UCsFlSnAIMgTQbasYrlK1vpw';
 
 const maxRes = 10;
-
-// const result = 10;
 
 const finalURL = `${URL}?key=${KEY}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${maxRes}`;
 
@@ -29,7 +27,7 @@ class Youtube extends React.Component<{}, {resultyt: any}> {
             .then(response => response.json())
             .then((responseJson) => {
                 // console.log(responseJson);
-                const resultyt = responseJson.items.map((obj: any) => obj.id.videoId);
+                const resultyt = responseJson.items.map((obj: any) => "https://www.youtube.com/embed/" + obj.id.videoId);
                 this.setState({resultyt});
                 
             })
@@ -41,19 +39,26 @@ class Youtube extends React.Component<{}, {resultyt: any}> {
 
     public render() {
         // console.log(finalURL);
-        console.log(this.state.resultyt);
+        // console.log(this.state.resultyt);
         return (
         <div>
             <button onClick={this.clicked}>Get youtube videos</button>
 
-            <div>
-                <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/c6t3bW7kx6E"
-                frameBorder="0"
-                allowFullScreen={true} />
-            </div>
+                {
+                    this.state.resultyt.map((link: any, i: number) => {
+                        // console.log(link);
+                        return <div key={i}>
+                            <iframe
+                            width="560"
+                            height="315"
+                            src={link}
+                            frameBorder="0"
+                            allowFullScreen={true} /></div>
+
+                        // return frame;
+                    })
+                }
+
         </div>
         )
     }
