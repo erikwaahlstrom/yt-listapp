@@ -2,14 +2,17 @@ import * as React from 'react';
 
 const URL = 'https://www.googleapis.com/youtube/v3/search';
 const KEY = 'AIzaSyB2gmaBHYLim0wrHh8xsB93yvTriLJHIjY';
-const channelID = 'UCp8lM3X0hpFDVlaFuZBvw0g';
+const channelID = 'UC59K-uG2A5ogwIrHw4bmlEg';
+
+// const channelID = 'UCp8lM3X0hpFDVlaFuZBvw0g';
+
 const maxRes = 10;
 
 // const result = 10;
 
 const finalURL = `${URL}?key=${KEY}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${maxRes}`;
 
-class Youtube extends React.Component {
+class Youtube extends React.Component<{}, {resultyt: any}> {
 
     constructor(props: any) {
         super(props);
@@ -24,14 +27,21 @@ class Youtube extends React.Component {
     public clicked() {
         fetch(finalURL)
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then((responseJson) => {
+                // console.log(responseJson);
+                const resultyt = responseJson.items.map((obj: any) => obj.id.videoId);
+                this.setState({resultyt});
+                
+            })
+            // console.log(data))
             .catch((error) => {
-                return console.error(error);
+                console.error(error);
             })
     }
 
     public render() {
-        console.log(finalURL);
+        // console.log(finalURL);
+        console.log(this.state.resultyt);
         return (
         <div>
             <button onClick={this.clicked}>Get youtube videos</button>
