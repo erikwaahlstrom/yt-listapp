@@ -2,9 +2,12 @@ import * as React from 'react';
 
 const URL = 'https://www.googleapis.com/youtube/v3/search';
 const KEY = 'AIzaSyB2gmaBHYLim0wrHh8xsB93yvTriLJHIjY';
-// const channelID = 'UC59K-uG2A5ogwIrHw4bmlEg';
 
+// Mralso YT channel-ID
 const channelID = 'UCsFlSnAIMgTQbasYrlK1vpw';
+
+// My YT channel-ID
+// const channelID = 'UCp8lM3X0hpFDVlaFuZBvw0g';
 
 const maxRes = 10;
 
